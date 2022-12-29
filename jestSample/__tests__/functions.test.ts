@@ -3,8 +3,10 @@
 import {
   asyncSumOfArray,
   asyncSumOfArraySometimesZero,
+  getFirstNameThrowIfLong,
   sumOfArray,
 } from "../functions";
+import { NameApiService } from "../nameApiService";
 import { DatabaseMock } from "../util";
 
 describe("sumOfArrayのテスト", () => {
@@ -52,5 +54,39 @@ describe("asyncSumOfArraySometimesZeroのテスト", () => {
     });
     const database = new Database();
     expect(await asyncSumOfArraySometimesZero([], database)).toBe(0);
+  });
+});
+
+// nameApiServiceをMock化
+jest.mock("../nameApiService");
+const NameApiServiceMock = NameApiService as jest.Mock;
+describe("NameApiServiceのテスト", () => {
+  test("名前が最大長を超えない場合は、そのまま名前を返すか。", async () => {
+    NameApiServiceMock.mockImplementationOnce(() => {
+      return {
+        getFirstName(): string {
+          return "John";
+        },
+      };
+    });
+
+    const nameApiServiceMock = new NameApiServiceMock();
+    expect(await getFirstNameThrowIfLong(5, nameApiServiceMock)).toBe("John");
+  });
+
+  test("名前が最大長を超える場合、例外を返すか。", async () => {
+    NameApiServiceMock.mockImplementationOnce(() => {
+      return {
+        getFirstName(): string {
+          return "John";
+        },
+      };
+    });
+
+    const nameApiServiceMock = new NameApiServiceMock();
+    const promise = async (): Promise<void> => {
+      await getFirstNameThrowIfLong(3, nameApiServiceMock);
+    };
+    await expect(promise).rejects.toThrow(Error("first_name too long"));
   });
 });
