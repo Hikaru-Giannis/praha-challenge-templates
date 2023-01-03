@@ -37,7 +37,6 @@ export const fetchUserName = async (
       const userName = apiService.fetchUserName(userId);
       resolve(userName);
     } catch (error) {
-      console.error(error);
       resolve("");
     }
   });

@@ -14,8 +14,8 @@ describe("sumOfArrayのテスト", () => {
     expect(sumOfArray([1, 2, 3])).toBe(6);
   });
 
-  test("空配列の場合、例外となるか。", () => {
-    expect(() => sumOfArray([])).toThrow(TypeError);
+  test("空配列の場合、合計値が0となるか。", () => {
+    expect(sumOfArray([])).toBe(0);
   });
 });
 
@@ -23,12 +23,8 @@ describe("asyncSumOfArrayのテスト", () => {
   test("配列の合計値が正しいか。", async () => {
     expect(await asyncSumOfArray([1, 2, 3])).toBe(6);
   });
-
-  test("空配列の場合、例外となるか。", async () => {
-    const promise = async (): Promise<void> => {
-      await asyncSumOfArray([]);
-    };
-    await expect(promise).rejects.toThrow(TypeError);
+  test("空配列の場合、合計値が0となるか。", async () => {
+    expect(await asyncSumOfArray([])).toBe(0);
   });
 });
 
@@ -49,7 +45,9 @@ describe("asyncSumOfArraySometimesZeroのテスト", () => {
   test("空配列の場合、例外となり0を返すか。", async () => {
     Database.mockImplementationOnce(() => {
       return {
-        save(_: number): void {},
+        save(_: number): void {
+          throw new Error();
+        },
       };
     });
     const database = new Database();
