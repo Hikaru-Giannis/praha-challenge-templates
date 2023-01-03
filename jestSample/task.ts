@@ -1,10 +1,12 @@
-import axios from "axios";
+import { resolve } from "path";
+import { ApiService } from "./apiService";
 
 // テスト1
 export const numberFormat = (value: number) => {
   const formatter = new Intl.NumberFormat("jp-JP");
   return formatter.format(value);
 };
+
 // テスト2
 export const bubbleSort = (arr: number[]) => {
   let noSwaps;
@@ -25,27 +27,18 @@ export const bubbleSort = (arr: number[]) => {
   return arr;
 };
 
-class ApiService {
-  public async fetchUserName(userId: number): Promise<string> {
-    const { data } = await axios
-      .get("https://jsonplaceholder.typicode.com/users/" + userId)
-      .catch((error) => {
-        throw Error("Failed to fetch user.");
-      });
-
-    return data.name;
-  }
-}
-
 // テスト3
 export const fetchUserName = async (
   userId: number,
   apiService: ApiService
 ): Promise<string> => {
-  try {
-    const userName = await apiService.fetchUserName(userId);
-    return userName;
-  } catch (error) {
-    return "";
-  }
+  return new Promise((resolve): void => {
+    try {
+      const userName = apiService.fetchUserName(userId);
+      resolve(userName);
+    } catch (error) {
+      console.error(error);
+      resolve("");
+    }
+  });
 };
