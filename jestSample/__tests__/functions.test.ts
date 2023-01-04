@@ -58,7 +58,7 @@ describe("asyncSumOfArraySometimesZeroのテスト", () => {
 // nameApiServiceをMock化
 jest.mock("../nameApiService");
 const NameApiServiceMock = NameApiService as jest.Mock;
-describe("NameApiServiceのテスト", () => {
+describe("getFirstNameThrowIfLongのテスト", () => {
   test("名前が最大長を超えない場合は、そのまま名前を返すか。", async () => {
     NameApiServiceMock.mockImplementationOnce(() => {
       return {

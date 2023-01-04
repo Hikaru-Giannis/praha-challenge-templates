@@ -1,11 +1,14 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
 export class NameApiService {
   private MAX_LENGTH = 4;
-  public constructor() {}
+  private client: AxiosInstance;
+  public constructor(client: AxiosInstance = axios.create()) {
+    this.client = client;
+  }
 
   public async getFirstName(): Promise<string> {
-    const { data } = await axios.get(
+    const { data } = await this.client.get(
       "https://random-data-api.com/api/name/random_name"
     );
     const firstName = data.first_name as string;
