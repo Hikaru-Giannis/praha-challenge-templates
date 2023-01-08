@@ -6,5 +6,6 @@ module.exports = {
     "**/functions.ts",
     "**/task.ts",
     "**/nameApiService.ts",
+    "**/kawamoto_task.ts",
   ],
 };
