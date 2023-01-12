@@ -7,5 +7,6 @@ module.exports = {
     "**/task.ts",
     "**/nameApiService.ts",
     "**/kawamoto_task.ts",
+    "**/furuno_task.ts",
   ],
 };
