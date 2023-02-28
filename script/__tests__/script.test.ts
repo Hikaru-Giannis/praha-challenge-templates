@@ -1,3 +1,5 @@
+import { add, divide, multiply, subtract } from "../script";
+
 test("multiply", () => {
   expect(multiply([3, 10, 3])).toBe(90);
 });
