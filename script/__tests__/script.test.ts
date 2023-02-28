@@ -8,6 +8,10 @@ describe("multiply", () => {
     const args = new Array(31).fill(1);
     expect(() => multiply(args)).toThrowError("Too many arguments.");
   });
+  test("計算結果が1,000を超える場合は、「big big number」を返す。", () => {
+    expect(multiply([10, 10, 10])).toBe(1000);
+    expect(multiply([10, 10, 10, 2])).toBe("big big number");
+  });
 });
 
 describe("add", () => {

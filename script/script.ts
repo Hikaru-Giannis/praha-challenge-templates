@@ -1,8 +1,10 @@
-export const multiply = (args: number[]): number => {
+export const multiply = (args: number[]): number | "big big number" => {
   if (args.length >= 31) {
     throw new Error("Too many arguments.");
   }
-  return args.reduce((arg, sum) => sum * arg, 1);
+  const result = args.reduce((arg, sum) => sum * arg, 1);
+  if (result > 1000) return "big big number";
+  return result;
 };
 export const add = (args: number[]): number | "too big" => {
   if (args.length >= 31) {
