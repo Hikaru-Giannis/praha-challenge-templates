@@ -9,4 +9,4 @@ TODOリスト
 - subtractの計算結果がマイナスの場合は「negative number」の文字列を返す
 - multiplyの計算結果が1000を越える場合は「big big number」の文字列を返す
 - divideの計算結果は小数点10桁まで表示し、それ以下は四捨五入する。
-- divideの第一引数が０の場合は、エラーになる。
+- divideの第2引数以降が０の場合は、エラーになる。
