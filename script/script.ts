@@ -1,12 +1,14 @@
 export const multiply = (args: number[]): number => {
-  return 90;
+  return args.reduce((arg, sum) => sum * arg, 1);
 };
 export const add = (args: number[]): number => {
-  return 16;
+  return args.reduce((arg, sum) => sum + arg, 0);
 };
 export const subtract = (args: number[]): number => {
-  return 7;
+  const [initial, ...rests] = args;
+  return rests.reduce((rest, sum) => rest - sum, initial);
 };
 export const divide = (args: number[]): number => {
-  return 10;
+  const [initial, ...rests] = args;
+  return rests.reduce((rest, sum) => rest / sum, initial);
 };
