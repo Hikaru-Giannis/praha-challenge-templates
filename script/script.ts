@@ -14,12 +14,14 @@ export const add = (args: number[]): number | "too big" => {
 
   return result;
 };
-export const subtract = (args: number[]): number => {
+export const subtract = (args: number[]): number | "negative number" => {
   if (args.length >= 31) {
     throw new Error("Too many arguments.");
   }
   const [initial, ...rests] = args;
-  return rests.reduce((rest, sum) => rest - sum, initial);
+  const result = rests.reduce((rest, sum) => rest - sum, initial);
+  if (result < 0) return "negative number";
+  return result;
 };
 export const divide = (args: number[]): number => {
   if (args.length >= 31) {

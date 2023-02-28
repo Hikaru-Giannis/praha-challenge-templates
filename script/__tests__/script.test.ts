@@ -18,7 +18,7 @@ describe("add", () => {
     const args = new Array(31).fill(1);
     expect(() => add(args)).toThrowError("Too many arguments.");
   });
-  test("合計が1,000を超える場合は、「too big」を返す。", () => {
+  test("計算結果が1,000を超える場合は、「too big」を返す。", () => {
     expect(add([999, 1])).toBe(1000);
     expect(add([999, 2])).toBe("too big");
   });
@@ -31,6 +31,10 @@ describe("subtract", () => {
   test("引数が31個の場合は、例外を返す。", () => {
     const args = new Array(31).fill(1);
     expect(() => subtract(args)).toThrowError("Too many arguments.");
+  });
+  test("計算結果がマイナスの場合は、「negative number」を返す。", () => {
+    expect(subtract([2, 1, 1])).toBe(0);
+    expect(subtract([2, 1, 1, 1])).toBe("negative number");
   });
 });
 
