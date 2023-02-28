@@ -30,5 +30,6 @@ export const divide = (args: number[]): number => {
     throw new Error("Too many arguments.");
   }
   const [initial, ...rests] = args;
-  return rests.reduce((rest, sum) => rest / sum, initial);
+  const result = rests.reduce((rest, sum) => rest / sum, initial);
+  return Number(result.toFixed(10));
 };

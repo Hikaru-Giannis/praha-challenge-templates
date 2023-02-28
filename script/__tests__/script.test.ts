@@ -50,4 +50,7 @@ describe("divide", () => {
     const args = new Array(31).fill(1);
     expect(() => divide(args)).toThrowError("Too many arguments.");
   });
+  test("計算結果は、小数点10桁まで表示する。", () => {
+    expect(divide([1, 3])).toBe(0.3333333333);
+  });
 });
